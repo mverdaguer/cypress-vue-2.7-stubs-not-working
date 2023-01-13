@@ -1,8 +1,8 @@
-import HelloWorldComponentSetup from "../HelloWorldComponentSetup.vue";
+import HelloWorldScriptSetup from "../HelloWorldScriptSetup.vue";
 
-describe("HelloWorldComponentSetup", () => {
+describe("HelloWorldScriptSetup", () => {
   it("renders properly", () => {
-    cy.mount(HelloWorldComponentSetup, { stubs: { ChildComponent: true } })
+    cy.mount(HelloWorldScriptSetup, { stubs: { ChildComponent: true } })
       .get("childcomponent-stub")
       .should("have.length", "3");
   });

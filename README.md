@@ -1,59 +1,65 @@
-# vue-project
+# cypress-vue-2.7-stubs-not-working
+Example project with stubs not working in Cypress 12.3.0, Vue 2.7.14 in script setup mode.
 
-This template should help get you started developing with Vue 3 in Vite.
+### Install
+`yarn`
 
-## Recommended IDE Setup
+### Run tests
+`yarn test:ct`
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+### Example 1: Working case (not using script setup)
+#### Component: HelloWorld
+```
+<script lang="ts">
+import { defineComponent } from "vue";
+import ChildComponent from "./ChildComponent.vue"
 
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
+export default defineComponent({
+  components: {
+    ChildComponent,
+  },
+});
+</script>
 ```
 
-### Compile and Hot-Reload for Development
+#### Test
+```
+import HelloWorld from "../HelloWorld.vue";
 
-```sh
-npm run dev
+describe("HelloWorld", () => {
+  it("renders properly", () => {
+    cy.mount(HelloWorld, { stubs: { ChildComponent: true } })
+      .get("childcomponent-stub")
+      .should("have.length", "3");
+  });
+});
 ```
 
-### Type-Check, Compile and Minify for Production
+### Example 2: Failing case (using script setup)
+#### Component: HelloWorldScriptSetup
+```
+<script setup lang="ts">
+import ChildComponent from './ChildComponent.vue'
+</script>
 
-```sh
-npm run build
+<template>
+  <div class="hello-world">
+    <ChildComponent />
+    <ChildComponent />
+    <ChildComponent />
+  </div>
+</template>
 ```
 
-### Run Headed Component Tests with [Cypress Component Testing](https://on.cypress.io/component)
-
-```sh
-npm run test:unit # or `npm run test:unit:ci` for headless testing
+#### Test
 ```
+import HelloWorldScriptSetup from "../HelloWorldScriptSetup.vue";
 
-### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
-
-```sh
-npm run build
-npm run test:e2e # or `npm run test:e2e:ci` for headless testing
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
+describe("HelloWorldScriptSetup", () => {
+  it("renders properly", () => {
+    cy.mount(HelloWorldScriptSetup, { stubs: { ChildComponent: true } })
+      .get("childcomponent-stub")
+      .should("have.length", "3");
+  });
+});
 ```
