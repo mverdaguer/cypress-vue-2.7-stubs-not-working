@@ -19,6 +19,14 @@ export default defineComponent({
     ChildComponent,
   },
 });
+
+<template>
+  <div class="hello-world">
+    <ChildComponent />
+    <ChildComponent />
+    <ChildComponent />
+  </div>
+</template>
 </script>
 ```
 
