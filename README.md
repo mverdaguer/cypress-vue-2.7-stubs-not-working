@@ -8,7 +8,7 @@ Example project with stubs not working in Cypress 12.3.0, Vue 2.7.14 in script s
 `yarn test:ct`
 
 ### Example 1: Working case (not using script setup)
-#### Component: HelloWorld
+#### Component: [HelloWorld](https://github.com/mverdaguer/cypress-vue-2.7-stubs-not-working/blob/main/src/components/HelloWorld.vue)
 ```
 <script lang="ts">
 import { defineComponent } from "vue";
@@ -22,7 +22,7 @@ export default defineComponent({
 </script>
 ```
 
-#### Test
+#### [Test]()
 ```
 import HelloWorld from "../HelloWorld.vue";
 
@@ -36,7 +36,7 @@ describe("HelloWorld", () => {
 ```
 
 ### Example 2: Failing case (using script setup)
-#### Component: HelloWorldScriptSetup
+#### Component: [HelloWorldScriptSetup](https://github.com/mverdaguer/cypress-vue-2.7-stubs-not-working/blob/main/src/components/HelloWorldScriptSetup.vue)
 ```
 <script setup lang="ts">
 import ChildComponent from './ChildComponent.vue'
