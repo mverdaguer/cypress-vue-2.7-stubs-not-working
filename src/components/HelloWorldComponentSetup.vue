@@ -1,12 +1,5 @@
-<script lang="ts">
-import { defineComponent } from "vue";
-import ChildComponent from "./ChildComponent.vue"
-
-export default defineComponent({
-  components: {
-    ChildComponent,
-  },
-});
+<script setup lang="ts">
+import ChildComponent from './ChildComponent.vue'
 </script>
 
 <template>
