@@ -22,7 +22,7 @@ export default defineComponent({
 </script>
 ```
 
-#### [Test]()
+#### [Test](https://github.com/mverdaguer/cypress-vue-2.7-stubs-not-working/blob/main/src/components/__tests__/HelloWorld.cy.ts)
 ```
 import HelloWorld from "../HelloWorld.vue";
 
@@ -51,7 +51,7 @@ import ChildComponent from './ChildComponent.vue'
 </template>
 ```
 
-#### Test
+#### [Test](https://github.com/mverdaguer/cypress-vue-2.7-stubs-not-working/blob/main/src/components/__tests__/HelloWorldComponentSetup.cy.ts)
 ```
 import HelloWorldScriptSetup from "../HelloWorldScriptSetup.vue";
 
